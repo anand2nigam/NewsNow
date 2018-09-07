@@ -7,12 +7,20 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class NewsFeedTableViewController: UITableViewController {
+    
+    let newsURL = "https://newsapi.org/v2/top-headlines"
+    let appID = "fde86b813a4448889e2f93196a307820"
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let parametersForQuery: [String:String] = ["country" : "us" , "apiKey" : appID]
+        
+        getNewsData(url: newsURL, parameters: parametersForQuery)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -25,7 +33,7 @@ class NewsFeedTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
+    // MARK: - TableView DataSource Methods
 
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -33,5 +41,47 @@ class NewsFeedTableViewController: UITableViewController {
         return 0
     }
 
+    // MARK:- Networking
+    
+    func getNewsData(url: String, parameters: [String:String]) {
+        
+        Alamofire.request(url, method: .get, parameters: parameters).responseJSON { (response) in
+            if response.result.isSuccess {
+                print("Success, got the news data")
+                
+                let newsJSON: JSON = JSON(response.result.value!)
+                
+                print(newsJSON)
+                
+                
+            } else {
+                print("Error \( response.result.error )")
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
  
 }
