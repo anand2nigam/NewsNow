@@ -10,17 +10,47 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
+
+
+//struct NewsDataModelResonse: Codable {
+//    let totalResults: Int
+//    let status: String
+//    let articles: [Article]
+//}
+//
+//struct Article: Codable {
+//    let title : String
+//    let content: String?
+//    let publishedAt: String
+//    let description: String?
+//    let url: String
+//    let author: String?
+//    let source: Source?
+//    let urlToImage: String?
+//}
+//
+//struct Source: Codable {
+//    let id : String?
+//    let name: String
+//}
+
 class NewsFeedTableViewController: UITableViewController {
     
     let newsURL = "https://newsapi.org/v2/top-headlines"
     let appID = "fde86b813a4448889e2f93196a307820"
+    
+    var dataModel: [Article] = []
 
+   
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let parametersForQuery: [String:String] = ["country" : "us" , "apiKey" : appID]
+         
         
-        getNewsData(url: newsURL, parameters: parametersForQuery)
+      //  getNewsData(url: newsURL, parameters: parametersForQuery)
+        
+        fetchJSON()
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -35,35 +65,101 @@ class NewsFeedTableViewController: UITableViewController {
 
     // MARK: - TableView DataSource Methods
 
+  
+    
+    
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return dataModel.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "newsItem", for: indexPath)
+        
+        cell.textLabel?.text = dataModel[indexPath.row].title
+        
+        cell.textLabel?.numberOfLines = 0
+        
+        return cell
     }
 
+    
     // MARK:- Networking
+//
+//    func getNewsData(url: String, parameters: [String:String])  {
+//
+//        var newsJSON: JSON? = nil
+//        Alamofire.request(url, method: .get, parameters: parameters).responseJSON { (response) in
+//            if response.result.isSuccess {
+//                print("Success, got the news data")
+//
+//                 newsJSON = JSON(response.result.value!)
+//
+//                self.updateNewsData(json: newsJSON!)
+//                print(newsJSON!)
+//
+//
+//
+//
+//
+//            } else {
+//                print("Error \( response.result.error )")
+//
+//            }
+//        }
+//
+//    }
+//
+//    func updateNewsData(json: JSON) {
+//
+//        let decoder = JSONDecoder()
+//        let model = try decoder.decode(NewsDataModelResponse, from: json)
+//
+//
+//    }
+//
+   
     
-    func getNewsData(url: String, parameters: [String:String]) {
+    func fetchJSON() {
+     
+        var components = URLComponents(string: newsURL)
         
-        Alamofire.request(url, method: .get, parameters: parameters).responseJSON { (response) in
-            if response.result.isSuccess {
-                print("Success, got the news data")
+        let queryItemCountry = URLQueryItem(name: "country", value: "us")
+        let queryItemKey = URLQueryItem(name: "apiKey", value: appID)
+        
+        components?.queryItems = [ queryItemKey, queryItemCountry]
+        
+        guard let url = components?.url! else { return }
+        print(url)
+        
+        
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            
+                guard let data = data else { return}
                 
-                let newsJSON: JSON = JSON(response.result.value!)
+                do {
+                    let decoder = JSONDecoder()
+                    let apiResponse =  try decoder.decode(NewsDataModel.self, from: data)
                 
-                print(newsJSON)
-                
-                
-            } else {
-                print("Error \( response.result.error )")
-            }
-        }
+                    self.dataModel = apiResponse.articles
+                    
+                    print(apiResponse.status)
+                    print(apiResponse.totalResults)
+                    
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                    
+                    
+                    
+                } catch {
+                    print(error)
+                }
+            
+        }.resume()
+        
     }
-    
-    
-    
-    
-    
     
     
     

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A8CD54B2143E27700843323 /* NewsDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8CD54A2143E27700843323 /* NewsDataModel.swift */; };
 		1AE87C0E21427C75005D6B32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE87C0D21427C75005D6B32 /* AppDelegate.swift */; };
 		1AE87C1321427C75005D6B32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AE87C1121427C75005D6B32 /* Main.storyboard */; };
 		1AE87C1521427C75005D6B32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AE87C1421427C75005D6B32 /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		027ADDA21D97C37B7549F6B8 /* Pods-NewsNow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsNow.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NewsNow/Pods-NewsNow.debug.xcconfig"; sourceTree = "<group>"; };
+		1A8CD54A2143E27700843323 /* NewsDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDataModel.swift; sourceTree = "<group>"; };
 		1AE87C0A21427C75005D6B32 /* NewsNow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsNow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AE87C0D21427C75005D6B32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1AE87C1221427C75005D6B32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -40,6 +42,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A8CD54C2143E28300843323 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1A8CD54A2143E27700843323 /* NewsDataModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		1AE87C0121427C75005D6B32 = {
 			isa = PBXGroup;
 			children = (
@@ -62,6 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				1AE87C0D21427C75005D6B32 /* AppDelegate.swift */,
+				1A8CD54C2143E28300843323 /* Model */,
 				1AE87C2021427CA3005D6B32 /* Controller */,
 				1AE87C1F21427C94005D6B32 /* View */,
 				1AE87C1421427C75005D6B32 /* Assets.xcassets */,
@@ -138,6 +149,7 @@
 				TargetAttributes = {
 					1AE87C0921427C75005D6B32 = {
 						CreatedOnToolsVersion = 9.4;
+						LastSwiftMigration = 1000;
 					};
 				};
 			};
@@ -220,6 +232,7 @@
 			files = (
 				1AE87C2221427DA8005D6B32 /* NewsFeedTableViewController.swift in Sources */,
 				1AE87C0E21427C75005D6B32 /* AppDelegate.swift in Sources */,
+				1A8CD54B2143E27700843323 /* NewsDataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,7 +386,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.anandnigam.NewsNow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -392,7 +405,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.anandnigam.NewsNow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
