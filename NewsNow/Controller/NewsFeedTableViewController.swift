@@ -7,32 +7,11 @@
 //
 
 import UIKit
-import Alamofire
-import SwiftyJSON
+import SafariServices
 
 
 
-//struct NewsDataModelResonse: Codable {
-//    let totalResults: Int
-//    let status: String
-//    let articles: [Article]
-//}
-//
-//struct Article: Codable {
-//    let title : String
-//    let content: String?
-//    let publishedAt: String
-//    let description: String?
-//    let url: String
-//    let author: String?
-//    let source: Source?
-//    let urlToImage: String?
-//}
-//
-//struct Source: Codable {
-//    let id : String?
-//    let name: String
-//}
+
 
 class NewsFeedTableViewController: UITableViewController {
     
@@ -41,22 +20,18 @@ class NewsFeedTableViewController: UITableViewController {
     
     var dataModel: [Article] = []
 
-    var newsWebURL: String?
+    
    
     override func viewDidLoad() {
         super.viewDidLoad()
 
          
         
-      //  getNewsData(url: newsURL, parameters: parametersForQuery)
+
         
         fetchJSON()
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     override func didReceiveMemoryWarning() {
@@ -89,60 +64,19 @@ class NewsFeedTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        newsWebURL = dataModel[indexPath.row].url
+        
         self.tableView.deselectRow(at: indexPath, animated: true)
-        self.performSegue(withIdentifier: "newsWebViewSegue", sender: indexPath.row)
+        
+        
+        let safariViewController = SFSafariViewController(url: URL(string: dataModel[indexPath.row].url)!)
+        
+        present(safariViewController, animated: true, completion: nil)
+       
         
     }
-    
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "newsWebViewSegue" {
-            
-            
-            
-            let destinationVC = segue.destination as! WebViewController
-            
-            destinationVC.url = newsWebURL
-            
-        }
-    }
-    
-    // MARK:- Networking
-//
-//    func getNewsData(url: String, parameters: [String:String])  {
-//
-//        var newsJSON: JSON? = nil
-//        Alamofire.request(url, method: .get, parameters: parameters).responseJSON { (response) in
-//            if response.result.isSuccess {
-//                print("Success, got the news data")
-//
-//                 newsJSON = JSON(response.result.value!)
-//
-//                self.updateNewsData(json: newsJSON!)
-//                print(newsJSON!)
-//
-//
-//
-//
-//
-//            } else {
-//                print("Error \( response.result.error )")
-//
-//            }
-//        }
-//
-//    }
-//
-//    func updateNewsData(json: JSON) {
-//
-//        let decoder = JSONDecoder()
-//        let model = try decoder.decode(NewsDataModelResponse, from: json)
-//
-//
-//    }
-//
+
    
+    // MARK:- Networking and JSON Parsing ( using Codable )
     
     func fetchJSON() {
      

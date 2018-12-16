@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1A8CD54B2143E27700843323 /* NewsDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8CD54A2143E27700843323 /* NewsDataModel.swift */; };
-		1ACCD89521C6316500FF65B5 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACCD89421C6316500FF65B5 /* WebViewController.swift */; };
 		1AE87C0E21427C75005D6B32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE87C0D21427C75005D6B32 /* AppDelegate.swift */; };
 		1AE87C1321427C75005D6B32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AE87C1121427C75005D6B32 /* Main.storyboard */; };
 		1AE87C1521427C75005D6B32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AE87C1421427C75005D6B32 /* Assets.xcassets */; };
@@ -20,7 +19,6 @@
 /* Begin PBXFileReference section */
 		027ADDA21D97C37B7549F6B8 /* Pods-NewsNow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsNow.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NewsNow/Pods-NewsNow.debug.xcconfig"; sourceTree = "<group>"; };
 		1A8CD54A2143E27700843323 /* NewsDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDataModel.swift; sourceTree = "<group>"; };
-		1ACCD89421C6316500FF65B5 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		1AE87C0A21427C75005D6B32 /* NewsNow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsNow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AE87C0D21427C75005D6B32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1AE87C1221427C75005D6B32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -95,7 +93,6 @@
 		1AE87C2021427CA3005D6B32 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				1ACCD89421C6316500FF65B5 /* WebViewController.swift */,
 				1AE87C2121427DA8005D6B32 /* NewsFeedTableViewController.swift */,
 			);
 			path = Controller;
@@ -236,7 +233,6 @@
 				1AE87C2221427DA8005D6B32 /* NewsFeedTableViewController.swift in Sources */,
 				1AE87C0E21427C75005D6B32 /* AppDelegate.swift in Sources */,
 				1A8CD54B2143E27700843323 /* NewsDataModel.swift in Sources */,
-				1ACCD89521C6316500FF65B5 /* WebViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
