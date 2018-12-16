@@ -41,6 +41,7 @@ class NewsFeedTableViewController: UITableViewController {
     
     var dataModel: [Article] = []
 
+    var newsWebURL: String?
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,10 +81,32 @@ class NewsFeedTableViewController: UITableViewController {
         cell.textLabel?.text = dataModel[indexPath.row].title
         
         cell.textLabel?.numberOfLines = 0
+        print(dataModel[indexPath.row].url)
         
         return cell
     }
 
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        newsWebURL = dataModel[indexPath.row].url
+        self.tableView.deselectRow(at: indexPath, animated: true)
+        self.performSegue(withIdentifier: "newsWebViewSegue", sender: indexPath.row)
+        
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "newsWebViewSegue" {
+            
+            
+            
+            let destinationVC = segue.destination as! WebViewController
+            
+            destinationVC.url = newsWebURL
+            
+        }
+    }
     
     // MARK:- Networking
 //
