@@ -18,13 +18,52 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="newsItem" id="0GC-re-THB">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="newsItem" rowHeight="115" id="0GC-re-THB" customClass="NewsFeedTableViewCell" customModule="NewsNow" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="115"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0GC-re-THB" id="jtc-Zr-Uhe">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="114.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AHT-lj-hmp">
+                                            <rect key="frame" x="5" y="5" width="98" height="104.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="98" id="8cO-nh-wXT"/>
+                                            </constraints>
+                                        </imageView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="SmY-nJ-MSI">
+                                            <rect key="frame" x="108" y="5" width="262" height="104.5"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IIz-wr-wOT">
+                                                    <rect key="frame" x="0.0" y="0.0" width="262" height="52.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kpl-nk-gwk">
+                                                    <rect key="frame" x="0.0" y="52.5" width="262" height="52"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="SmY-nJ-MSI" firstAttribute="top" secondItem="jtc-Zr-Uhe" secondAttribute="top" constant="5" id="4yh-ks-CIg"/>
+                                        <constraint firstItem="AHT-lj-hmp" firstAttribute="top" secondItem="jtc-Zr-Uhe" secondAttribute="top" constant="5" id="7gn-hQ-I7e"/>
+                                        <constraint firstAttribute="bottom" secondItem="AHT-lj-hmp" secondAttribute="bottom" constant="5" id="Ce3-Y5-ETF"/>
+                                        <constraint firstAttribute="bottom" secondItem="SmY-nJ-MSI" secondAttribute="bottom" constant="5" id="CsT-Sa-DjI"/>
+                                        <constraint firstItem="AHT-lj-hmp" firstAttribute="leading" secondItem="jtc-Zr-Uhe" secondAttribute="leading" constant="5" id="IdY-4k-AiQ"/>
+                                        <constraint firstAttribute="trailing" secondItem="SmY-nJ-MSI" secondAttribute="trailing" constant="5" id="ME6-Vf-zcg"/>
+                                        <constraint firstItem="SmY-nJ-MSI" firstAttribute="leading" secondItem="AHT-lj-hmp" secondAttribute="trailing" constant="5" id="NQV-cN-RRx"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="newsDetailLabel" destination="Kpl-nk-gwk" id="UvB-04-JEh"/>
+                                    <outlet property="newsFeedImageView" destination="AHT-lj-hmp" id="dK4-GB-n85"/>
+                                    <outlet property="newsHeadingLabel" destination="IIz-wr-wOT" id="ime-k1-O8d"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -36,7 +75,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OWm-1I-0eN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="465" y="127"/>
+            <point key="canvasLocation" x="464.80000000000001" y="126.38680659670166"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="956-AG-nX5">

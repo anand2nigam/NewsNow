@@ -51,12 +51,13 @@ class NewsFeedTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "newsItem", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "newsItem", for: indexPath) as! NewsFeedTableViewCell
         
-        cell.textLabel?.text = dataModel[indexPath.row].title
+        cell.newsHeadingLabel.text = dataModel[indexPath.row].title
+        cell.newsHeadingLabel.numberOfLines = 0
+        cell.newsDetailLabel.text = dataModel[indexPath.row].description
         
-        cell.textLabel?.numberOfLines = 0
-        print(dataModel[indexPath.row].url)
+        print(indexPath.row)
         
         return cell
     }
@@ -80,8 +81,10 @@ class NewsFeedTableViewController: UITableViewController {
     
     func fetchJSON() {
      
+        // To add different components in the URL
         var components = URLComponents(string: newsURL)
         
+        // Adding different queries in the URL with their name and value
         let queryItemCountry = URLQueryItem(name: "country", value: "us")
         let queryItemKey = URLQueryItem(name: "apiKey", value: appID)
         
@@ -97,12 +100,14 @@ class NewsFeedTableViewController: UITableViewController {
                 
                 do {
                     let decoder = JSONDecoder()
+                    // Decoding JSON data into the specified model 
                     let apiResponse =  try decoder.decode(NewsDataModel.self, from: data)
                 
                     self.dataModel = apiResponse.articles
                     
                     print(apiResponse.status)
                     print(apiResponse.totalResults)
+                    print(apiResponse.articles.count)
                     
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
